@@ -10,8 +10,15 @@ export default function App() {
   const [isAddMode, setIsAddMode] = useState(false);
 
   const addTaskHandler = (taskTitle)=>{
+    if(taskTitle.length === 0)
+    {  
+      alert("Add a name to your task");
+      return;            // Simply don't add task if the field is empty
+    }
+    
     setTasks( (currentTasks) => [...currentTasks, {id: Math.random().toString(), value: taskTitle}] );  // This is passed as a function b/c since we are updating the most recent state which is not 
    // 100% sure it is right or not then setting a function always helps as the func will contain the latest value as its parameter(goals) here.
+    
     setIsAddMode(false);   // React will run this two functions at once giving us our required modal.
   }
 
